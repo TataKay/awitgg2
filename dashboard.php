@@ -1,0 +1,157 @@
+<?php
+
+include_once 'connectdb.php';
+session_start();
+
+if ($_SESSION['useremail']=="") {
+  
+  header('Location:../index.php');
+}
+
+
+
+include_once 'header.php';
+
+
+if (isset($_POST['btnsave'])) {
+
+  $category = $_POST['txtcategory'];
+
+  if (empty($category)) {
+
+    $_SESSION['status'] = "Category Field is Empty";
+    $_SESSION['status_code'] = "warning";
+
+  }else{
+
+
+    $insert = $pdo->prepare("insert into tbl_category (category) values(:cat)");
+
+    $insert->bindParam(':cat', $category);
+
+    if ($insert->execute()) {
+      
+      $_SESSION['status'] = "Category Added successfully";
+      $_SESSION['status_code'] = "success";
+
+    }else {
+      
+      $_SESSION['status'] = "Category Added Failed";
+      $_SESSION['status_code'] = "warning";
+
+    }
+
+
+
+  }}
+
+  if (isset($_POST['btnsave'])) {
+
+  $category = $_POST['txtcategory'];
+
+  if (empty($category)) {
+
+    $_SESSION['status'] = "Category Field is Empty";
+    $_SESSION['status_code'] = "warning";
+
+  }else{
+
+
+    $insert = $pdo->prepare("insert into tbl_category (category) values(:cat)");
+
+    $insert->bindParam(':cat', $category);
+
+    if ($insert->execute()) {
+      
+      $_SESSION['status'] = "Category Added successfully";
+      $_SESSION['status_code'] = "success";
+
+    }else {
+      
+      $_SESSION['status'] = "Category Added Failed";
+      $_SESSION['status_code'] = "warning";
+
+    }
+
+
+
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+?>
+
+
+
+
+
+
+
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Admin Dashboard</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <!-- <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Starter Page</li> -->
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-12">
+          
+          <div class="card card-primary card-outline">
+              <div class="card-header">
+                <h5 class="m-0">Featured</h5>
+              </div>
+              <div class="card-body">
+                <h6 class="card-title">Special title treatment</h6>
+
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+
+          
+
+            
+          </div>
+          <!-- /.col-md-6 -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+<?php 
+
+include_once 'footer.php';
+
+?>
